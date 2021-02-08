@@ -50,7 +50,7 @@ class Light {
   Light(this.address);
 
   /// Connects the socket to the light and sends a request to get light's status.
-  void connect() async {
+  Future connect() async {
     socket = await Socket.connect(address, _port);
     _startListening();
     protocol = await _getProtocol();
@@ -65,7 +65,7 @@ class Light {
   /// Sends a request to get the light's status.
   /// Updates this instance with current bulbs's mode, time, status, protocol, color, brightness.
   /// This operation usually takes between 80 and 500 milliseconds.
-  void refresh() async {
+  Future refresh() async {
 
     Uint8List dataRaw;
 
